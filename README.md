@@ -4,7 +4,8 @@ Each member should contribute roughly 50% of the total work done in this project
 
 If one member feels that the other isn't doing enough work, they should talk about to the other member about this and come to a conclusion. If no conclusion is reached, the party doing more work may inform the course professor and/or TA. Final contribution totals will be written and explained when submitting the project.
 
-These are what will potentially be done for design patterns and are not a final statement on what will be included in the final build. The listed implementations may not be present due to it not being required or us not having the resources to implement them such as running out of time. The use of Singletons will be in the form of a Game, Save, UI, Input, Audio and/or ResourceManager. For now we will be focusing on a GameManager and UIManager.
+These are what will potentially be done for design patterns and are not a final statement on what will be included in the final build. The listed implementations may not be present due to it not being required or us not having the resources to implement them such as running out of time. 
+The use of Singletons will be in the form of a Game, Save, UI, Input, Audio and/or ResourceManager. For now we will be focusing on a GameManager and UIManager.
 
 The Command design pattern will be in the form of custom button mapping, unique banner/profile pic/character customization and/or world editing. For now we will be focusing on custom button mapping and customization for a banner/profile pic/character/tower.
 
