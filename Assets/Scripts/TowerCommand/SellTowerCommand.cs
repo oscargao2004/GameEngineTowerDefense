@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class SellTowerCommand : TowerCommand
 {
-    
     Player _player;
-    UIManager _uiManager;
     Tower _tower;
     public SellTowerCommand(Tower tower)
     {

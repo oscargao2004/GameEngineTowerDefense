@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton
 {
-    [SerializeField] Tower selectedTower;
+    Tower activeTower;
+    [SerializeField] GameObject towerPrefab;
     [SerializeField] List<EditTowerButton> editTowerButtons;
     TowerCommand _upgradeCommand, _sellCommand, _recallCommand; 
 
     void Start()
     {
-        _upgradeCommand = new UpgradeTowerCommand(selectedTower);
-        _sellCommand = new SellTowerCommand(selectedTower);
-        _recallCommand = new RecallTowerCommand(selectedTower);
+        activeTower = FindAnyObjectByType<Tower>();
+        _upgradeCommand = new UpgradeTowerCommand(activeTower);
+        _sellCommand = new SellTowerCommand(activeTower);
+        _recallCommand = new RecallTowerCommand(activeTower);
 
        
         editTowerButtons[0].GetComponent<Button>().onClick.AddListener(() => editTowerButtons[0].ExecuteTowerCommand(_upgradeCommand));
@@ -23,7 +25,12 @@ public class UIManager : Singleton
 
     void Update()
     {
-        
+    }
+
+    public void SpawnTower()
+    {
+        GameObject newTower = Instantiate(towerPrefab);
+        activeTower = newTower.GetComponent<Tower>();
     }
     
 }

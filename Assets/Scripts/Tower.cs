@@ -14,13 +14,9 @@ public class Tower : MonoBehaviour
 
     [SerializeField][Range(0,2)] int _upgradeLevel;
 
-    void Awake()
-    {
-        _meshFilter = GetComponent<MeshFilter>();
-    }
-
     void Start()
     {
+        _meshFilter = GetComponent<MeshFilter>();
         
     }
 
@@ -34,7 +30,7 @@ public class Tower : MonoBehaviour
         Debug.Log("Tower sold");
     }
     public void Recall(){
-        Player.towerInventory.Add(this);
+        //Player.towerInventory.Add(this);
         Debug.Log("Tower recalled to inventory");
 
     }
