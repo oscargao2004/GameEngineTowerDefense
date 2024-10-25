@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton
 {
+    //mostly temporary code in order for the command pattern to work
     Tower activeTower;
     [SerializeField] GameObject towerPrefab;
     [SerializeField] List<EditTowerButton> editTowerButtons;
@@ -13,11 +14,6 @@ public class UIManager : Singleton
     void Start()
     {
         activeTower = FindAnyObjectByType<Tower>();
-        _upgradeCommand = new UpgradeTowerCommand(activeTower);
-        _sellCommand = new SellTowerCommand(activeTower);
-        _recallCommand = new RecallTowerCommand(activeTower);
-
-       
         editTowerButtons[0].GetComponent<Button>().onClick.AddListener(() => editTowerButtons[0].ExecuteTowerCommand(_upgradeCommand));
         editTowerButtons[1].GetComponent<Button>().onClick.AddListener(() => editTowerButtons[1].ExecuteTowerCommand(_sellCommand));
         editTowerButtons[2].GetComponent<Button>().onClick.AddListener(() => editTowerButtons[2].ExecuteTowerCommand(_recallCommand));
@@ -31,6 +27,9 @@ public class UIManager : Singleton
     {
         GameObject newTower = Instantiate(towerPrefab);
         activeTower = newTower.GetComponent<Tower>();
+        _upgradeCommand = new UpgradeTowerCommand(activeTower);
+        _sellCommand = new SellTowerCommand(activeTower);
+        _recallCommand = new RecallTowerCommand(activeTower);
     }
     
 }

@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     [SerializeField] Mesh Upgrade1Model;
     [SerializeField] Mesh Upgrade2Model;
     MeshFilter _meshFilter;
+    bool _isActive = true;
     public int cost {get; private set;}
     public int upgradeCost {get; private set;}
 
@@ -30,8 +31,16 @@ public class Tower : MonoBehaviour
         Debug.Log("Tower sold");
     }
     public void Recall(){
-        //Player.towerInventory.Add(this);
-        Debug.Log("Tower recalled to inventory");
+        _isActive = !_isActive;
+        gameObject.SetActive(_isActive);
+        if (_isActive)
+        {
+            //Player.towerInventory.Remove(this);
+        }
+        else
+        {
+            //Player.towerInventory.Add(this);
+        }
 
     }
     public void Upgrade(){

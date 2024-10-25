@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements.Experimental;
 
 public class Player : Singleton
 {
@@ -15,8 +16,7 @@ public class Player : Singleton
             value += amount;
         }
     }
-    public static List<Tower> towerInventory;
-
+    //public static List<Tower> towerInventory;
 
     public Currency currency;
 
