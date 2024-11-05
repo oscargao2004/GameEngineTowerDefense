@@ -5,7 +5,8 @@ using UnityEngine.Serialization;
 
 public class GridSystem : MonoBehaviour
 {
-    private List<Vector3> _tiles = new List<Vector3>();
+    [SerializeField] GameObject tilePrefab;
+    [SerializeField] List<GameObject> tiles = new List<GameObject>();
     
     [Header("Grid Properties")]
     [SerializeField] private int gridWidth = 5;
@@ -14,6 +15,8 @@ public class GridSystem : MonoBehaviour
     
     [Header("Debug")] 
     [SerializeField] private Color gridColor;
+
+    
     
     void Start()
     {
@@ -27,17 +30,31 @@ public class GridSystem : MonoBehaviour
 
     public void CreateGrid()
     {
-        _tiles = null;
-        _tiles = new List<Vector3>();
-        Vector3 startPos = transform.position - new Vector3((gridWidth / 2f) + 0.5f, 0, (gridLength / 2f) + 0.5f);
-
-        for (int i = 1; i <= gridLength; i++)
+        if (tiles == null)
         {
-            for (int j = 1; j <= gridWidth; j++)
+            tiles = new List<GameObject>();
+            Vector3 startPos = transform.position - new Vector3((gridWidth / 2f) + 0.5f, 0, (gridLength / 2f) + 0.5f);
+
+            for (int i = 1; i <= gridLength; i++)
             {
-                _tiles.Add(startPos + new Vector3(j, 0, i));
+                for (int j = 1; j <= gridWidth; j++)
+                {
+                    GameObject newTile = Instantiate(tilePrefab, startPos + new Vector3(j, 0, i), Quaternion.identity);
+                    tiles.Add(newTile);
+
+                }
             }
         }
+        else
+        {
+            Debug.LogError("Can't create grid, a grid already exists.");
+        }
+    }
+
+    public void DeleteGrid()
+    {
+        foreach (GameObject tile in tiles) DestroyImmediate(tile);
+        tiles = null;
     }
 
     private void OnDrawGizmos()
@@ -61,11 +78,11 @@ public class GridSystem : MonoBehaviour
             Gizmos.DrawLine(start, end);
         }
 
-        if (_tiles.Count > 0)
+        if (tiles.Count > 0)
         {
-            for (int i = 0; i < _tiles.Count; i++)
+            for (int i = 0; i < tiles.Count; i++)
             {
-                Gizmos.DrawSphere(_tiles[i], centerPointRadius);
+                Gizmos.DrawSphere(tiles[i].transform.position, centerPointRadius);
             }
         }
     }

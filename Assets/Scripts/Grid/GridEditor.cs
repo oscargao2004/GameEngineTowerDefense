@@ -13,6 +13,10 @@ public class GridEditor : Editor
         {
             gridSystem.CreateGrid();
         }
+        if (GUILayout.Button("Delete Grid"))
+        {
+            gridSystem.DeleteGrid();
+        }
     }
     
 }
