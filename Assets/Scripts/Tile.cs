@@ -33,5 +33,7 @@ public class Tile : MonoBehaviour
     {
         _renderer.material.color = Color.white;
     }
+
+   
 }
 

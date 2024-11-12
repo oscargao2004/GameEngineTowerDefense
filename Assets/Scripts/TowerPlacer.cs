@@ -19,6 +19,7 @@ public class TowerPlacer : MonoBehaviour
 
     void PlaceTower(Vector3 location, GameObject tower)
     {
+        location.y += 0.5f;
         GameObject newTower = Instantiate(tower, location, Quaternion.identity);
     }
 }
