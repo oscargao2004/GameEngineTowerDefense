@@ -3,16 +3,16 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(PathCreator))]
-public class PathCreatorEditor : Editor
+[CustomEditor(typeof(Path))]
+public class PathEditor : Editor
 {
     [SerializeField] private float handleSize = 0.5f;
     private bool _editing;
-    private PathCreator _pathCreator;
+    private Path _path;
 
     private void OnEnable()
     {
-        _pathCreator = (PathCreator)target;
+        _path = (Path)target;
     }
 
     public override void OnInspectorGUI()
@@ -23,7 +23,7 @@ public class PathCreatorEditor : Editor
 
         if (GUILayout.Button("Add Path Point"))
         {
-            _pathCreator.CreatePathPoint();
+            _path.CreatePathPoint();
         }
         
         EditorGUILayout.EndVertical();
@@ -31,10 +31,10 @@ public class PathCreatorEditor : Editor
 
     private void OnSceneGUI()
     {
-        for (int i = 0; i < _pathCreator.path.Count; i++)
+        for (int i = 0; i < _path.pointList.Count; i++)
         {
             Handles.color = Color.magenta;
-            Handles.SphereHandleCap(-1, _pathCreator.path[i], Quaternion.identity, handleSize, EventType.Repaint);
+            Handles.SphereHandleCap(-1, _path.pointList[i], Quaternion.identity, handleSize, EventType.Repaint);
         }
         
         
