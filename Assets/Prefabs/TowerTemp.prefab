@@ -121,10 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba1e6b307a24174e9f4e535a7fb4731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRange: 3
-  attackSpeedInSeconds: 1
+  detectRange: 10
+  attackSpeedInSeconds: 0.3
   projectilePrefab: {fileID: 5536445449803639347, guid: 4c0eab69b93914e45ad3c5f13e2bc077, type: 3}
-  projectileDamage: 10
+  projectileDamage: 0
   BaseModel: {fileID: 0}
   Upgrade1Model: {fileID: 0}
   Upgrade2Model: {fileID: 0}

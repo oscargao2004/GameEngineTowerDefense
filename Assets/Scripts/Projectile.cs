@@ -5,11 +5,13 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float disableAfterSeconds;
     [SerializeField] float speed;
+    [SerializeField] ProjectileObjectPool pool;
     public float Damage { get; private set; }
     Rigidbody rb;
     private float timer = 0f;
     void Start()
     {
+        pool = GameObject.Find("ProjectilePool").GetComponent<ProjectileObjectPool>();
         rb = GetComponent<Rigidbody>();
         rb.linearVelocity = transform.forward.normalized * speed;
     }
@@ -19,7 +21,7 @@ public class Projectile : MonoBehaviour
         if (timer >= disableAfterSeconds)
         {
             timer = 0;
-            Destroy(gameObject); //change logic to utilize object pooling later
+            pool.ReturnObject(gameObject);
         }
     }
 

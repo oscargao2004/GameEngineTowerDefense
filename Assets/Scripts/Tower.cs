@@ -31,6 +31,8 @@ public class Tower : MonoBehaviour
     private int _upgradeLevel;
 
     private Queue<GameObject> _targetQueue = new Queue<GameObject>();
+    
+    private ProjectileObjectPool _projectilePool;
 
     private bool _dirty = false;
 
@@ -41,6 +43,7 @@ public class Tower : MonoBehaviour
         _meshFilter = GetComponent<MeshFilter>();
         _sphereCollider = GetComponent<SphereCollider>();
         _sphereCollider.radius = detectRange*2;
+        _projectilePool = GameObject.Find("ProjectilePool").GetComponent<ProjectileObjectPool>();
     }
 
     void Update()
@@ -86,9 +89,13 @@ public class Tower : MonoBehaviour
     void Shoot()
     {
         Debug.Log("Bang");
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, 
-            Quaternion.LookRotation((_currentTarget.transform.position - transform.position).normalized, Vector3.up ));
+        //GameObject projectile = Instantiate(projectilePrefab, transform.position, 
+            //Quaternion.LookRotation((_currentTarget.transform.position - transform.position).normalized, Vector3.up ));
 
+        GameObject projectile = _projectilePool.GetObject();
+        projectile.transform.position = transform.position;
+        projectile.transform.rotation =
+            Quaternion.LookRotation((_currentTarget.transform.position - transform.position).normalized, Vector3.up);
         projectile.GetComponent<Projectile>().SetDamage(projectileDamage);
         nextFireTime = Time.time + attackSpeedInSeconds;
 
