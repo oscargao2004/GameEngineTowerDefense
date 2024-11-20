@@ -4,19 +4,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Vector3 = UnityEngine.Vector3;
 
 public class Tower : MonoBehaviour
 {
     [Header("Tower Stats")] 
     [SerializeField] private float detectRange;
-    [SerializeField] private float attackSpeed;
+    [SerializeField] private float attackSpeedInSeconds;
     public int cost {get; private set;}
     public int upgradeCost {get; private set;}
     
     [Header("Projectile Settings")]
     [SerializeField] GameObject projectilePrefab;
-    [SerializeField] float projectileSpeed;
+
+    [SerializeField] private float projectileDamage;
     
     [Header("Upgraded Meshes")]
     [SerializeField] Mesh BaseModel;
@@ -32,6 +34,8 @@ public class Tower : MonoBehaviour
 
     private bool _dirty = false;
 
+    private float nextFireTime;
+
     void Start()
     {
         _meshFilter = GetComponent<MeshFilter>();
@@ -41,16 +45,12 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (_dirty) _currentTarget = _targetQueue.Peek();
+        if (_dirty && _targetQueue.Count > 0) _currentTarget = _targetQueue.Peek();
         _dirty = false;
 
-        if (_currentTarget)
+        if (_currentTarget && Time.time > nextFireTime)
         {
-            StartCoroutine(Shoot());
-        }
-        else
-        {
-            StopCoroutine(Shoot());
+            Shoot();
         }
 
     }
@@ -83,22 +83,36 @@ public class Tower : MonoBehaviour
         Debug.Log("Tower upgraded");
     }
 
-    IEnumerator Shoot()
+    void Shoot()
     {
         Debug.Log("Bang");
-        //Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(attackSpeed);
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, 
+            Quaternion.LookRotation((_currentTarget.transform.position - transform.position).normalized, Vector3.up ));
+
+        projectile.GetComponent<Projectile>().SetDamage(projectileDamage);
+        nextFireTime = Time.time + attackSpeedInSeconds;
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        _targetQueue.Enqueue(other.gameObject);
+        if (other.CompareTag("Enemy"))
+        {
+            _dirty = true;
+            _targetQueue.Enqueue(other.gameObject);
+            Debug.Log("Enemy added to targetQueue");
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _dirty = true;
-        _targetQueue.Dequeue();
+        if (other.CompareTag("Enemy"))
+        {
+            _dirty = true;
+            _targetQueue.Dequeue();
+            Debug.Log("Enemy removed from targetQueue");
+        }
     }
 
     private void OnDrawGizmosSelected()

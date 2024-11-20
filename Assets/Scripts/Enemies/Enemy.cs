@@ -9,22 +9,29 @@ public abstract class Enemy : MonoBehaviour
     protected float currentHealth;
     private static Path _path;
     public abstract void Die();
-    public abstract void TakeDamage(float damage);
 
+    [SerializeField]
+    [Range(0f, 1f)]
     private float t;
+
+    private int _pathIndex = 0;
     private void FollowPath()
     {
-        GoToNextWaypoint(_path, 0);
+        GoToNextWaypoint(_path);
     }
 
-    private void GoToNextWaypoint(Path path, int currentPathIndex)
+    private void GoToNextWaypoint(Path path)
     {
-        t += Time.fixedDeltaTime * speed;
-        transform.position = Vector3.Lerp(transform.position, path.pointList[currentPathIndex], t/100);
+        transform.position = Vector3.Lerp(path.pointList[0], path.pointList[1], t);
+    }
 
-        if (t/100 >= 1)
+    public virtual void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
         {
-            GoToNextWaypoint(path, currentPathIndex + 1);
+            Die();
         }
     }
 
@@ -37,11 +44,13 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Start()
     {
-        
+        transform.position = _path.pointList[0];
+        currentHealth = maxHealth;
     }
 
     public virtual void Update()
     {
         FollowPath();
+        
     }
 }
