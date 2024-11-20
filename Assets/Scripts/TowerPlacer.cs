@@ -21,5 +21,7 @@ public class TowerPlacer : MonoBehaviour
     {
         location.y += 0.5f;
         GameObject newTower = Instantiate(tower, location, Quaternion.identity);
+        GetTowerCount.towers.Add(newTower);
+
     }
 }
