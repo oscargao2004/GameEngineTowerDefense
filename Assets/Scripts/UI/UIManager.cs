@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton
 {
@@ -25,6 +26,7 @@ public class UIManager : Singleton
 
     void Update()
     {
+
     }
 
     public void SpawnTower()
@@ -33,4 +35,15 @@ public class UIManager : Singleton
         activeTower = newTower.GetComponent<Tower>();
     }
     
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 }
