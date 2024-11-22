@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02572c861e6bd74439c4e4312a36d357, type: 3}
   m_Name: AOETower
   m_EditorClassIdentifier: 
-  name: 
-  prefab: {fileID: 0}
-  cost: 0
+  name: AOE tower
+  prefab: {fileID: 1172189491858979956, guid: 0bfce3b6d207f2a4ba42eba3f3175e6a, type: 3}
+  cost: 1

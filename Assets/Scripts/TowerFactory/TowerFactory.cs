@@ -3,7 +3,6 @@ using UnityEngine;
 
 public abstract class TowerFactory
 {
-
     public abstract GameObject CreateTower();
 
     public abstract void LoadData();

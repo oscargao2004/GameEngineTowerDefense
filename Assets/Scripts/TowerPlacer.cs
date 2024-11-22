@@ -5,6 +5,7 @@ public class TowerPlacer : MonoBehaviour
 {
     [SerializeField] private GridSystem _grid;
     private TowerFactory _towerFactory;
+    private int i;
 
     private List<TowerFactory> _towerFactories = new List<TowerFactory>
     {
@@ -33,5 +34,13 @@ public class TowerPlacer : MonoBehaviour
     private void SpawnTower(Vector3 position, Quaternion rotation)
     {
         Instantiate(_towerFactory.CreateTower(), position, rotation);
+    }
+
+    public void ChangeTowerType()
+    {
+        Debug.Log("tower type changed");
+        i++;
+        if (i >= _towerFactories.Count) i = 0;
+        _towerFactory = _towerFactories[i];
     }
 }

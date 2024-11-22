@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02572c861e6bd74439c4e4312a36d357, type: 3}
   m_Name: TurretTower
   m_EditorClassIdentifier: 
-  name: Turret
-  prefab: {fileID: 1172189491858979956, guid: b718a741d292f064fa4ded3e85b5e198, type: 3}
+  name: Turret tower
+  prefab: {fileID: 1172189491858979956, guid: fcb3e7ceb3d07a0418ee5c3937a9f193, type: 3}
   cost: 1

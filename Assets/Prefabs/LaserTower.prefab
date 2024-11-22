@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7752324150961757640}
   - component: {fileID: 2771147395714957382}
   m_Layer: 2
-  m_Name: TowerTemp2
+  m_Name: LaserTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
