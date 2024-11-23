@@ -15,6 +15,12 @@ public class Projectile : MonoBehaviour
         pool = GameObject.Find("ProjectilePool").GetComponent<ProjectileObjectPool>();
         rb = GetComponent<Rigidbody>();
     }
+
+    private void Start()
+    {
+        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
+    }
+
     void Update()
     {
         timer += Time.deltaTime;

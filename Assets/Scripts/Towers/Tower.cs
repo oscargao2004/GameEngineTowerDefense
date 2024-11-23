@@ -96,14 +96,10 @@ public class Tower : MonoBehaviour
     void Shoot()
     {
         Debug.Log("Bang");
-        //GameObject projectile = Instantiate(projectilePrefab, transform.position, 
-            //Quaternion.LookRotation((_currentTarget.transform.position - transform.position).normalized, Vector3.up ));
 
-        GameObject projectile = _projectilePool.GetObject();
-        projectile.transform.position = transform.position;
-        projectile.transform.rotation =
-            Quaternion.LookRotation((_currentTarget.transform.position - transform.position).normalized, Vector3.up);
-        //projectile.GetComponent<Projectile>().SetDamage(projectileDamage);
+        Projectile projectile = _projectilePool.GetObject().GetComponent<Projectile>();
+        projectile.SetPositionDestination(transform.position, _currentTarget.transform.position);
+        projectile.SetDamage(projectileDamage);
         nextFireTime = Time.time + attackSpeedInSeconds;
 
     }

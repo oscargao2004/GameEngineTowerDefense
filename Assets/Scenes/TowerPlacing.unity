@@ -6843,7 +6843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fe54b5968bc664b91a21eb6023d174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePoolObjPrefab: {fileID: 0}
+  projectilePoolObjPrefab: {fileID: 5536445449803639347, guid: 4c0eab69b93914e45ad3c5f13e2bc077, type: 3}
   initialPoolSize: 100
 --- !u!4 &950693670
 Transform:
