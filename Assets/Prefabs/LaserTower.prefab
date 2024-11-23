@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7752324150961757640}
   - component: {fileID: 2771147395714957382}
   m_Layer: 2
-  m_Name: TowerTemp
+  m_Name: LaserTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d29b47dbb0b857a4d92c6eba7314a66a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba1e6b307a24174e9f4e535a7fb4731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRange: 2
+  detectRange: 3
   attackSpeedInSeconds: 1
   projectilePrefab: {fileID: 5536445449803639347, guid: 4c0eab69b93914e45ad3c5f13e2bc077, type: 3}
   projectileDamage: 10

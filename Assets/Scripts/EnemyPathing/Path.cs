@@ -20,8 +20,8 @@ public class Path : MonoBehaviour
         pointList.Add(Vector3.zero);
     }
 
-    public void GetNextPoint()
+    public Vector3 GetPointAtIndex()
     {
-        
+        return Vector3.zero;
     }
 }

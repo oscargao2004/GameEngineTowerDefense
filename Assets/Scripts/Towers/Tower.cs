@@ -45,8 +45,15 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (_dirty && _targetQueue.Count > 0) _currentTarget = _targetQueue.Peek();
-        _dirty = false;
+        if (!_currentTarget)
+            _dirty = true;
+        if (_dirty && _targetQueue.Count > 0) 
+            _currentTarget = _targetQueue.Peek();
+        if (_dirty && _targetQueue.Count == 0)
+        {
+            _currentTarget = null;
+            _dirty = false;
+        }
 
         if (_currentTarget && Time.time > nextFireTime)
         {

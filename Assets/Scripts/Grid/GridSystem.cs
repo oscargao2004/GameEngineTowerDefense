@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -39,7 +40,7 @@ public class GridSystem : MonoBehaviour
             {
                 for (int j = 1; j <= gridWidth; j++)
                 {
-                    GameObject newTile = Instantiate(tilePrefab, startPos + new Vector3(j, 0, i), Quaternion.identity);
+                    GameObject newTile = Instantiate(tilePrefab, startPos + new Vector3(j, 0, i), Quaternion.identity, gameObject.transform);
                     tiles.Add(newTile);
 
                 }
@@ -53,8 +54,16 @@ public class GridSystem : MonoBehaviour
 
     public void DeleteGrid()
     {
-        foreach (GameObject tile in tiles) DestroyImmediate(tile);
-        tiles = null;
+        if (tiles != null)
+        {
+            foreach (GameObject tile in tiles) DestroyImmediate(tile);
+            tiles = null;
+        }
+        else
+        {
+            Debug.LogError("A grid does not exist");
+        }
+        
     }
 
     private void OnDrawGizmos()
@@ -78,7 +87,7 @@ public class GridSystem : MonoBehaviour
             Gizmos.DrawLine(start, end);
         }
 
-        if (tiles.Count > 0)
+        if (tiles != null)
         {
             for (int i = 0; i < tiles.Count; i++)
             {
