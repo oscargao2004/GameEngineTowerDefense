@@ -34,8 +34,6 @@ public class Tower : MonoBehaviour
     
     private ProjectileObjectPool _projectilePool;
 
-    private bool _dirty = false;
-
     private float nextFireTime;
 
     void Awake()

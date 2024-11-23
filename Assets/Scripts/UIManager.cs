@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : Singleton
+public class UIManager : Singleton<UIManager>
 {
     [SerializeField] Canvas canvas;
     public void EnableUI()

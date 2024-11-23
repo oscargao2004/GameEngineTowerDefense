@@ -21,19 +21,20 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         
     }
 
-    public virtual void Start()
+    protected virtual void Start()
     {
         Debug.Log("Enemy initialized");
         currentHealth = maxHealth;
     }
 
-    public virtual void Update()
+    protected virtual void Update()
     {
         
     }
+
 }
