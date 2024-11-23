@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba1e6b307a24174e9f4e535a7fb4731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRange: 3
+  detectRange: 2
   attackSpeedInSeconds: 1
   projectilePrefab: {fileID: 5536445449803639347, guid: 4c0eab69b93914e45ad3c5f13e2bc077, type: 3}
   projectileDamage: 10

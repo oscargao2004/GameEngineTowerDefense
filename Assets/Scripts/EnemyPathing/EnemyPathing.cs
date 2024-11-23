@@ -28,7 +28,6 @@ public class EnemyPathing : MonoBehaviour
         {
             while (t < 1)
             {
-                Debug.Log("pathing");
                 t += Time.deltaTime/Vector3.Distance(previousWaypoint, nextWaypoint);
                 transform.position = Vector3.Lerp(previousWaypoint, nextWaypoint, t);
 
