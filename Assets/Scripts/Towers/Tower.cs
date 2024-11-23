@@ -38,7 +38,7 @@ public class Tower : MonoBehaviour
 
     private float nextFireTime;
 
-    void Start()
+    void Awake()
     {
         _meshFilter = GetComponent<MeshFilter>();
         _sphereCollider = GetComponent<SphereCollider>();
@@ -48,16 +48,10 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        if (!_currentTarget)
-            _dirty = true;
-        if (_dirty && _targetQueue.Count > 0) 
-            _currentTarget = _targetQueue.Peek();
-        if (_dirty && _targetQueue.Count == 0)
+        if (!_currentTarget && _targetQueue.Count > 0)
         {
-            _currentTarget = null;
-            _dirty = false;
+            _currentTarget = _targetQueue.Peek();
         }
-
         if (_currentTarget && Time.time > nextFireTime)
         {
             Shoot();
@@ -108,7 +102,6 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            _dirty = true;
             _targetQueue.Enqueue(other.gameObject);
             Debug.Log("Enemy added to targetQueue");
         }
@@ -119,8 +112,8 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            _dirty = true;
             _targetQueue.Dequeue();
+            _currentTarget = null;
             Debug.Log("Enemy removed from targetQueue");
         }
     }

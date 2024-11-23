@@ -6844,7 +6844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePoolObjPrefab: {fileID: 5536445449803639347, guid: 4c0eab69b93914e45ad3c5f13e2bc077, type: 3}
-  initialPoolSize: 100
+  initialPoolSize: 50
 --- !u!4 &950693670
 Transform:
   m_ObjectHideFlags: 0
@@ -14075,8 +14075,8 @@ SceneRoots:
   - {fileID: 466620902}
   - {fileID: 169142860}
   - {fileID: 205265399}
-  - {fileID: 488362367}
   - {fileID: 1447508787}
   - {fileID: 1635984888}
   - {fileID: 1657251809}
   - {fileID: 950693670}
+  - {fileID: 488362367}

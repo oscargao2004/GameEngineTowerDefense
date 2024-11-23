@@ -11,7 +11,7 @@ public class ProjectileObjectPool : MonoBehaviour
     {
         for (int i = 0; i < initialPoolSize; i++)
         {
-            GameObject projectile = Instantiate(projectilePoolObjPrefab);
+            GameObject projectile = Instantiate(projectilePoolObjPrefab, transform);
             _pool.Enqueue(projectile);
             projectile.SetActive(false);
         }
