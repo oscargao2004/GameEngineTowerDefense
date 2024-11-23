@@ -103,7 +103,7 @@ public class Tower : MonoBehaviour
         projectile.transform.position = transform.position;
         projectile.transform.rotation =
             Quaternion.LookRotation((_currentTarget.transform.position - transform.position).normalized, Vector3.up);
-        projectile.GetComponent<Projectile>().SetDamage(projectileDamage);
+        //projectile.GetComponent<Projectile>().SetDamage(projectileDamage);
         nextFireTime = Time.time + attackSpeedInSeconds;
 
     }

@@ -25,6 +25,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+
     public void SetDamage(float damage) {Damage = damage;}
 
     private void OnTriggerEnter(Collider other)
