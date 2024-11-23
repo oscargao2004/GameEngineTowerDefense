@@ -7,17 +7,17 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] ProjectileObjectPool pool;
     public float Damage { get; private set; }
-    Rigidbody rb;
+    private Rigidbody rb;
     private float timer = 0f;
-    void Start()
+    private Vector3 _direction;
+    void Awake()
     {
         pool = GameObject.Find("ProjectilePool").GetComponent<ProjectileObjectPool>();
         rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = transform.forward.normalized * speed;
     }
-    void FixedUpdate()
+    void Update()
     {
-        timer += Time.fixedDeltaTime;
+        timer += Time.deltaTime;
         if (timer >= disableAfterSeconds)
         {
             timer = 0;
@@ -25,7 +25,12 @@ public class Projectile : MonoBehaviour
         }
     }
 
-
+    public void SetPositionDestination(Vector3 position, Vector3 destination)
+    {
+        transform.position = position;
+        _direction = destination - transform.position;
+        rb.linearVelocity = _direction * speed;
+    }
     public void SetDamage(float damage) {Damage = damage;}
 
     private void OnTriggerEnter(Collider other)

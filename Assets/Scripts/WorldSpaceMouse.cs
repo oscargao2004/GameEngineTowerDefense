@@ -24,7 +24,9 @@ public class WorldSpaceMouse : Singleton
         Vector3 screenMousePos = Input.mousePosition;
         _mouseWorldPosition = _mainCamera.ScreenToWorldPoint(new Vector3(screenMousePos.x, screenMousePos.y, _mainCamera.nearClipPlane));
         //_ray = new Ray(_mainCamera.transform.position, (_mouseWorldPosition - _mainCamera.transform.position).normalized);
-        _ray = new Ray(_mouseWorldPosition, (_mainCamera.transform.forward).normalized);
+        //_ray = new Ray(_mouseWorldPosition, (_mainCamera.transform.forward).normalized);
+        _ray.origin = _mouseWorldPosition;
+        _ray.direction = _mainCamera.transform.forward.normalized;
 
         RaycastHit hit;
         if (Physics.Raycast(_ray, out hit))
