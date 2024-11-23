@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyPathing : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class EnemyPathing : MonoBehaviour
     private bool _waypointReached = true;
     private float t;
     private Enemy _enemy;
-
     private void Awake()
     {
         _enemy = GetComponent<Enemy>();
@@ -20,7 +20,6 @@ public class EnemyPathing : MonoBehaviour
     {
         StartCoroutine(GoToNextWaypoint());
     }
-
     IEnumerator GoToNextWaypoint()
     {
         Vector3 previousWaypoint = transform.position;
@@ -30,14 +29,12 @@ public class EnemyPathing : MonoBehaviour
             while (t < 1)
             {
                 Debug.Log("pathing");
-                t += Time.deltaTime;
+                t += Time.deltaTime/Vector3.Distance(previousWaypoint, nextWaypoint);
                 transform.position = Vector3.Lerp(previousWaypoint, nextWaypoint, t);
 
                 yield return new WaitForEndOfFrame();
             }
 
-            Debug.Log("waypoint reached");
-            Debug.Log("heading to next waypoint");
             previousWaypoint = nextWaypoint;
             if (i+1 < _path.pointList.Count)
                 nextWaypoint = _path.pointList[i+1];
