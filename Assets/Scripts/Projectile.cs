@@ -5,24 +5,38 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float disableAfterSeconds;
     [SerializeField] float speed;
+    [SerializeField] ProjectileObjectPool pool;
     public float Damage { get; private set; }
-    Rigidbody rb;
+    private Rigidbody rb;
     private float timer = 0f;
-    void Start()
+    private Vector3 _direction;
+    void Awake()
     {
+        pool = GameObject.Find("ProjectilePool").GetComponent<ProjectileObjectPool>();
         rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = transform.forward.normalized * speed;
     }
-    void FixedUpdate()
+
+    private void Start()
     {
-        timer += Time.fixedDeltaTime;
+        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
         if (timer >= disableAfterSeconds)
         {
             timer = 0;
-            Destroy(gameObject); //change logic to utilize object pooling later
+            pool.ReturnObject(gameObject);
         }
     }
 
+    public void SetPositionDestination(Vector3 position, Vector3 destination)
+    {
+        transform.position = position;
+        _direction = destination - transform.position;
+        rb.linearVelocity = _direction * speed;
+    }
     public void SetDamage(float damage) {Damage = damage;}
 
     private void OnTriggerEnter(Collider other)

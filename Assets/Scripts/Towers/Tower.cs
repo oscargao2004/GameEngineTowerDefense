@@ -31,30 +31,27 @@ public class Tower : MonoBehaviour
     private int _upgradeLevel;
 
     private Queue<GameObject> _targetQueue = new Queue<GameObject>();
+    
+    private ProjectileObjectPool _projectilePool;
 
     private bool _dirty = false;
 
     private float nextFireTime;
 
-    void Start()
+    void Awake()
     {
         _meshFilter = GetComponent<MeshFilter>();
         _sphereCollider = GetComponent<SphereCollider>();
         _sphereCollider.radius = detectRange*2;
+        _projectilePool = GameObject.Find("ProjectilePool").GetComponent<ProjectileObjectPool>();
     }
 
     void Update()
     {
-        if (!_currentTarget)
-            _dirty = true;
-        if (_dirty && _targetQueue.Count > 0) 
-            _currentTarget = _targetQueue.Peek();
-        if (_dirty && _targetQueue.Count == 0)
+        if (!_currentTarget && _targetQueue.Count > 0)
         {
-            _currentTarget = null;
-            _dirty = false;
+            _currentTarget = _targetQueue.Peek();
         }
-
         if (_currentTarget && Time.time > nextFireTime)
         {
             Shoot();
@@ -93,10 +90,10 @@ public class Tower : MonoBehaviour
     void Shoot()
     {
         Debug.Log("Bang");
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, 
-            Quaternion.LookRotation((_currentTarget.transform.position - transform.position).normalized, Vector3.up ));
 
-        projectile.GetComponent<Projectile>().SetDamage(projectileDamage);
+        Projectile projectile = _projectilePool.GetObject().GetComponent<Projectile>();
+        projectile.SetPositionDestination(transform.position, _currentTarget.transform.position);
+        projectile.SetDamage(projectileDamage);
         nextFireTime = Time.time + attackSpeedInSeconds;
 
     }
@@ -105,7 +102,6 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            _dirty = true;
             _targetQueue.Enqueue(other.gameObject);
             Debug.Log("Enemy added to targetQueue");
         }
@@ -116,8 +112,8 @@ public class Tower : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            _dirty = true;
             _targetQueue.Dequeue();
+            _currentTarget = null;
             Debug.Log("Enemy removed from targetQueue");
         }
     }

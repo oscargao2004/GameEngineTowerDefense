@@ -24,11 +24,11 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Awake()
     {
         
-        Debug.Log("Enemy initialized");
     }
 
     public virtual void Start()
     {
+        Debug.Log("Enemy initialized");
         currentHealth = maxHealth;
     }
 
