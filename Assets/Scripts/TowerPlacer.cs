@@ -4,6 +4,7 @@ using UnityEngine;
 public class TowerPlacer : MonoBehaviour
 {
     [SerializeField] private GridSystem _grid;
+    [SerializeField] private GameObject parent;
     private TowerFactory _towerFactory;
     private int i;
 
@@ -25,7 +26,7 @@ public class TowerPlacer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && WorldSpaceMouse.raycastIsColliding)
         {
             SpawnTower(WorldSpaceMouse.GetTile().transform.position, Quaternion.identity);
         }
@@ -33,7 +34,7 @@ public class TowerPlacer : MonoBehaviour
     
     private void SpawnTower(Vector3 position, Quaternion rotation)
     {
-        Instantiate(_towerFactory.CreateTower(), position, rotation);
+        Instantiate(_towerFactory.CreateTower(), position, rotation, parent.transform);
     }
 
     public void ChangeTowerType()

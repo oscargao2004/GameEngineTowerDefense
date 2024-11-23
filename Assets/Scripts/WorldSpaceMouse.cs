@@ -9,6 +9,7 @@ public class WorldSpaceMouse : Singleton
     private Vector3 _mouseWorldPosition;
     private static RaycastHit _mouseRayHit;
     private Ray _ray;
+    public static bool raycastIsColliding;
 
     [Header("Debug Settings")] 
     [SerializeField] private Color debugColor;
@@ -28,7 +29,12 @@ public class WorldSpaceMouse : Singleton
         RaycastHit hit;
         if (Physics.Raycast(_ray, out hit))
         {
+            raycastIsColliding = true;
             _mouseRayHit = hit;
+        }
+        else
+        {
+            raycastIsColliding = false;
         }
     }
 
