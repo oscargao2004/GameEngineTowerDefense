@@ -1,12 +1,24 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BasicEnemy : Enemy
 {
-    public override void Die()
+
+    protected override void Awake()
     {
-        Destroy(this.gameObject);
+        base.Awake();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+    protected override void Die()
+    {
+        base.Die();
         Debug.Log("AHHHHHHHHHH. Enemy died.");
+        Destroy(this.gameObject);
     }
     
 

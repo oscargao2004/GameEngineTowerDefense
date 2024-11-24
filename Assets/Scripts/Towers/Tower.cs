@@ -34,8 +34,6 @@ public class Tower : MonoBehaviour
     
     private ProjectileObjectPool _projectilePool;
 
-    private bool _dirty = false;
-
     private float nextFireTime;
 
     void Awake()
@@ -89,8 +87,6 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("Bang");
-
         Projectile projectile = _projectilePool.GetObject().GetComponent<Projectile>();
         projectile.SetPositionDestination(transform.position, _currentTarget.transform.position);
         projectile.SetDamage(projectileDamage);
