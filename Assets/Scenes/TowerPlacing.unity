@@ -151,10 +151,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1718626363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 796.9443, y: 574.2026}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 511.27255, y: -138.31082}
+  m_SizeDelta: {x: 1022.5374, y: 276.6116}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6192668
 MonoBehaviour:
@@ -176,9 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You Win!
-
-'
+  m_text: 'Kills: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -205,14 +203,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 177.58
-  m_fontSizeBase: 177.58
+  m_fontSize: 107.5
+  m_fontSizeBase: 107.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2137,7 +2135,7 @@ GameObject:
   - component: {fileID: 295562194}
   - component: {fileID: 295562193}
   m_Layer: 0
-  m_Name: UITesting
+  m_Name: UI Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2155,7 +2153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899235edc861dcc4ea5845c2d71ee843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1718626362}
+  textMesh: {fileID: 6192668}
 --- !u!4 &295562194
 Transform:
   m_ObjectHideFlags: 0
@@ -11136,7 +11134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1718626360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13958,6 +13956,6 @@ SceneRoots:
   - {fileID: 1635984888}
   - {fileID: 1657251809}
   - {fileID: 950693670}
-  - {fileID: 488362367}
   - {fileID: 295562194}
   - {fileID: 1718626363}
+  - {fileID: 488362367}

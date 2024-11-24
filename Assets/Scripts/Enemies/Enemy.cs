@@ -7,9 +7,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] public float speed = 1f;
     [SerializeField] protected float maxHealth = 100f;
     protected float currentHealth;
+    protected EnemyManager enemyManager;
 
-    public abstract void Die();
-    
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -21,9 +20,14 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    protected virtual void Die()
+    {
+        enemyManager.UpdateKillCount();
+    }
+
     protected virtual void Awake()
     {
-        
+        enemyManager = GetComponentInParent<EnemyManager>();
     }
 
     protected virtual void Start()

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Path path {get; private set;}
-    private List<Enemy> _enemyList = new List<Enemy>();
     
     void Start()
     {

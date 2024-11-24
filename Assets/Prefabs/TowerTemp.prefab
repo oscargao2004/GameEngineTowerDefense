@@ -124,7 +124,7 @@ MonoBehaviour:
   detectRange: 2
   attackSpeedInSeconds: 0.3
   projectilePrefab: {fileID: 5536445449803639347, guid: 4c0eab69b93914e45ad3c5f13e2bc077, type: 3}
-  projectileDamage: 5
+  projectileDamage: 10
   BaseModel: {fileID: 0}
   Upgrade1Model: {fileID: 0}
   Upgrade2Model: {fileID: 0}

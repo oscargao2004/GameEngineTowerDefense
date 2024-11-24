@@ -1,27 +1,26 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class UITestingScript : Singleton<UITestingScript>, IEventListener
+public class UITestingScript : Singleton<UITestingScript>, IListener
 {
     [SerializeField] private TextMeshProUGUI textMesh;
+    [SerializeField] private ObserverSubject observerSubject;
 
     private int killCount = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        observerSubject.AddListener(this as IListener);
         textMesh.text = "Kill Count: " + killCount;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnNotify()
+    public void OnNotify(ObserverEvent oEvent)
     {
         Debug.Log("UI Notified");
-        killCount++;
-        textMesh.text = "Kill Count: " + killCount;
+        if (oEvent == ObserverEvent.EnemyDeath)
+        {
+            killCount++;
+            textMesh.text = "Kill Count: " + killCount;
+        }
     }
 }
