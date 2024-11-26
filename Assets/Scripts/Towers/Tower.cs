@@ -133,7 +133,7 @@ public class Tower : MonoBehaviour, ISelectable
     public void OnSelect()
     {
         _towerManager.SetSelectedTower(this);
-        UITestingScript.Toggle(UIType.TowerOptionsUI, true);
+        UIManager.Toggle(UIType.TowerOptionsUI, true);
     }
 
     public void OnDeselect()
