@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UIManager : Singleton
+public class UIManager : Singleton<UIManager>
 {
 
     void Start()

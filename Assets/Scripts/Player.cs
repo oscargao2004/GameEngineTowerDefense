@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Player : Singleton
+public class Player : Singleton<Player>
 {
     public struct Currency
     {
