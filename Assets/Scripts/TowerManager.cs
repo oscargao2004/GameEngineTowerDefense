@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
     private Tower _selectedTower;
     private ObserverSubject _subject;
+    List<Tower> _towers;
 
     private void Awake()
     {
@@ -23,8 +26,8 @@ public class TowerManager : MonoBehaviour
 
     public void SetSelectedTower(Tower tower)
     {
-        _subject.NotifyListeners(ObserverEvent.TowerSelected);
         _selectedTower = tower;
+        _subject.NotifyListeners(ObserverEvent.TowerSelected);
     }
 
     public Tower GetSelectedTower()
@@ -35,5 +38,10 @@ public class TowerManager : MonoBehaviour
     public void ClearSelectedTower()
     {
         _selectedTower = null;
+    }
+
+    public void TowerSold()
+    {
+        _subject.NotifyListeners(ObserverEvent.TowerSell);
     }
 }

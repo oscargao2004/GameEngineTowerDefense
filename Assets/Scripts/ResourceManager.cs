@@ -3,9 +3,14 @@ using UnityEngine.Serialization;
 
 public class ResourceManager : Singleton<ResourceManager>, IListener
 {
-    private float _balance;
+    private int _balance;
     [SerializeField] ObserverSubject towerManager;
-    
+    private ObserverSubject _subject;
+
+    void Awake()
+    {
+        _subject = GetComponent<ObserverSubject>();
+    }
     void Start()
     {
         towerManager.AddListener(this);
@@ -35,10 +40,17 @@ public class ResourceManager : Singleton<ResourceManager>, IListener
     void AddBalance(int amount)
     {
         _balance += amount;
+        _subject.NotifyListeners(ObserverEvent.BalanceUpdate);
     }
 
     void SubtractBalance(int amount)
     {
         _balance -= amount;
+        _subject.NotifyListeners(ObserverEvent.BalanceUpdate);
+    }
+
+    public int GetBalance()
+    {
+        return _balance;
     }
 }

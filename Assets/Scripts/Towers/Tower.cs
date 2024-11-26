@@ -65,7 +65,9 @@ public class Tower : MonoBehaviour, ISelectable
 
     }
     
-    public void Sell(){
+    public void Sell()
+    {
+        _towerManager.TowerSold();
         Destroy(gameObject);
         Debug.Log("Tower sold");
     }
