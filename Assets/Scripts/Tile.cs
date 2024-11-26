@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, ISelectable
 {
     private Renderer _renderer;
     void Awake()
@@ -34,6 +34,15 @@ public class Tile : MonoBehaviour
         _renderer.material.color = Color.white;
     }
 
-   
+
+    public void OnSelect()
+    {
+        
+    }
+
+    public void OnDeselect()
+    {
+        
+    }
 }
 
