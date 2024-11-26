@@ -6,5 +6,6 @@ public class EnemyData : ScriptableObject
     public string name;
     public GameObject prefab;
     public float speed;
+    public float maxHealth;
 
 }

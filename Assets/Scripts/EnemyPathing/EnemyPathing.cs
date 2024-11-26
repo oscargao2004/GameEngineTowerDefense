@@ -20,6 +20,11 @@ public class EnemyPathing : MonoBehaviour
     {
         StartCoroutine(GoToNextWaypoint());
     }
+
+    private void OnEnable()
+    {
+    }
+
     IEnumerator GoToNextWaypoint()
     {
         Vector3 previousWaypoint = transform.position;
