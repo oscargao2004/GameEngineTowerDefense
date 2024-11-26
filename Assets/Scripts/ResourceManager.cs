@@ -28,7 +28,6 @@ public class ResourceManager : Singleton<ResourceManager>, IListener
                 SubtractBalance(50); //need to change to use tower upgrade costs
                 break;
             default:
-                Debug.Log("No reaction to observer event");
                 break;
         }
     }

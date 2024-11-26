@@ -11,8 +11,5 @@ public class EditTowerButton : MonoBehaviour
     {
         
     }
-    public void ExecuteTowerCommand(TowerCommand towerCommand)
-    {
-        towerCommand.Execute();
-    }
+   
 }

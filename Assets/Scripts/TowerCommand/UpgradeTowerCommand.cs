@@ -3,14 +3,8 @@ using UnityEngine;
 
 public class UpgradeTowerCommand : TowerCommand
 {
-    Player _player;
-    Tower _tower;
-    public UpgradeTowerCommand(Tower tower)
+    public override void Execute(Tower tower)
     {
-        _tower = tower;
-    }
-    public override void Execute()
-    {
-        _tower.Upgrade();
+        tower.Upgrade();
     }
 }

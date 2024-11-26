@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7752324150961757640}
   - component: {fileID: 2771147395714957382}
   - component: {fileID: 8922925271068334838}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: TowerTemp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 47dd40530a21e7c48b4d59ce55d57614, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,6 +129,8 @@ MonoBehaviour:
   BaseModel: {fileID: 0}
   Upgrade1Model: {fileID: 0}
   Upgrade2Model: {fileID: 0}
+  baseMaterial: {fileID: 2100000, guid: 47dd40530a21e7c48b4d59ce55d57614, type: 2}
+  selectedMaterial: {fileID: 2100000, guid: 003e8cd88f1a52846b2f7f1703a270bf, type: 2}
 --- !u!65 &8922925271068334838
 BoxCollider:
   m_ObjectHideFlags: 0

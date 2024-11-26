@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
     private Tower _selectedTower;
-    
+    private ObserverSubject _subject;
+
+    private void Awake()
+    {
+        _subject = GetComponent<ObserverSubject>();
+    }
+
     void Start()
     {
         
@@ -16,6 +23,7 @@ public class TowerManager : MonoBehaviour
 
     public void SetSelectedTower(Tower tower)
     {
+        _subject.NotifyListeners(ObserverEvent.TowerSelected);
         _selectedTower = tower;
     }
 
@@ -24,7 +32,7 @@ public class TowerManager : MonoBehaviour
         return _selectedTower;
     }
 
-    void ClearSelectedTower()
+    public void ClearSelectedTower()
     {
         _selectedTower = null;
     }

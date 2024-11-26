@@ -23,6 +23,11 @@ public class Tower : MonoBehaviour, ISelectable
     [SerializeField] Mesh Upgrade1Model;
     [SerializeField] Mesh Upgrade2Model;
     MeshFilter _meshFilter;
+    MeshRenderer _meshRenderer;
+
+    [Header("Material Settings")]
+    [SerializeField] private Material baseMaterial;
+    [SerializeField] private Material selectedMaterial;
     
     private SphereCollider _sphereCollider;
     private GameObject _currentTarget;
@@ -39,6 +44,7 @@ public class Tower : MonoBehaviour, ISelectable
 
     void Awake()
     {
+        _meshRenderer = GetComponent<MeshRenderer>();
         _towerManager = GetComponentInParent<TowerManager>();
         _meshFilter = GetComponent<MeshFilter>();
         _sphereCollider = GetComponent<SphereCollider>();
@@ -89,8 +95,6 @@ public class Tower : MonoBehaviour, ISelectable
 
     void Shoot()
     {
-        Debug.Log("Bang");
-
         Projectile projectile = _projectilePool.GetObject().GetComponent<Projectile>();
         projectile.SetPositionDestination(transform.position, _currentTarget.transform.position);
         projectile.SetDamage(projectileDamage);
@@ -132,12 +136,18 @@ public class Tower : MonoBehaviour, ISelectable
 
     public void OnSelect()
     {
+        Debug.Log("tower selected");
+        _meshRenderer.material = selectedMaterial;
         _towerManager.SetSelectedTower(this);
         UIManager.Toggle(UIType.TowerOptionsUI, true);
     }
 
     public void OnDeselect()
     {
-        throw new NotImplementedException();
+        Debug.Log("tower deselected");
+        _meshRenderer.material = baseMaterial;
+        _towerManager.ClearSelectedTower();
+        UIManager.Toggle(UIType.TowerOptionsUI, false);
+
     }
 }

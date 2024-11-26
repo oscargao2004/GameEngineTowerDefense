@@ -19,7 +19,6 @@ public class ObserverSubject : MonoBehaviour
     public void NotifyListeners(ObserverEvent oEvent)
     {
         Debug.Log("Notifying listeners");
-        Debug.Log(_listeners.Count);
         foreach (IListener listener in _listeners)
         {
             listener.OnNotify(oEvent);

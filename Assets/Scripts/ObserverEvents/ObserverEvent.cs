@@ -6,5 +6,6 @@ public enum ObserverEvent
     EnemyDeath,
     TowerSpawn,
     TowerSell,
-    TowerUpgrade
+    TowerUpgrade,
+    TowerSelected
 }

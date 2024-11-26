@@ -1,4 +1,5 @@
 using System;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class WorldSpaceMouse : Singleton<WorldSpaceMouse>
@@ -14,6 +15,8 @@ public class WorldSpaceMouse : Singleton<WorldSpaceMouse>
     [Header("Debug Settings")] 
     [SerializeField] private Color debugColor;
     [SerializeField] private float rayHitPointSphereRadius = 0.2f;
+
+    private ISelectable _selected;
 
     void Awake()
     {
@@ -37,10 +40,14 @@ public class WorldSpaceMouse : Singleton<WorldSpaceMouse>
             ISelectable selectable = hit.transform.GetComponent<ISelectable>();
             if (selectable != null)
             {
-                Debug.Log("mouse is hovering selectable object");
                 if (Input.GetMouseButtonDown(0))
                 {
-                    selectable.OnSelect();
+                    if (_selected != null)
+                    {
+                        _selected.OnDeselect();
+                    }
+                    _selected = selectable;
+                    _selected.OnSelect();
                 }
             }
         }
