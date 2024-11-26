@@ -36,15 +36,22 @@ public class WorldSpaceMouse : Singleton<WorldSpaceMouse>
         {
             raycastIsColliding = true;
             _mouseRayHit = hit;
-
-            ISelectable selectable = hit.transform.GetComponent<ISelectable>();
+        }
+        else
+        {
+            raycastIsColliding = false;
+        }
+        
+        if (raycastIsColliding)
+        {
+            ISelectable selectable = GetMouseRayHit().transform.GetComponent<ISelectable>();
             if (selectable != null)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
                     if (_selected != null)
                     {
-                        //_selected.OnDeselect();
+                        _selected.OnDeselect();
                         _selected = selectable;
                         _selected.OnSelect();
                     }
@@ -55,10 +62,6 @@ public class WorldSpaceMouse : Singleton<WorldSpaceMouse>
                     }
                 }
             }
-        }
-        else
-        {
-            raycastIsColliding = false;
         }
     }
 

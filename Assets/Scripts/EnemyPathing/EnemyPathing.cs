@@ -33,7 +33,7 @@ public class EnemyPathing : MonoBehaviour
         {
             while (t < 1)
             {
-                t += Time.deltaTime/Vector3.Distance(previousWaypoint, nextWaypoint);
+                t += Time.deltaTime/Vector3.Distance(previousWaypoint, nextWaypoint) * _enemy.speed;
                 transform.position = Vector3.Lerp(previousWaypoint, nextWaypoint, t);
 
                 yield return new WaitForEndOfFrame();
