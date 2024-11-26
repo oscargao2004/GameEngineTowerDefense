@@ -33,6 +33,16 @@ public class WorldSpaceMouse : Singleton
         {
             raycastIsColliding = true;
             _mouseRayHit = hit;
+
+            ISelectable selectable = hit.transform.GetComponent<ISelectable>();
+            if (selectable != null)
+            {
+                Debug.Log("mouse is hovering selectable object");
+                if (Input.GetMouseButtonDown(0))
+                {
+                    selectable.OnSelect();
+                }
+            }
         }
         else
         {

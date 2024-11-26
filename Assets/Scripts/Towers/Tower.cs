@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Vector3 = UnityEngine.Vector3;
 
-public class Tower : MonoBehaviour
+public class Tower : MonoBehaviour, ISelectable
 {
     [Header("Tower Stats")] 
     [SerializeField] private float detectRange;
@@ -29,6 +27,7 @@ public class Tower : MonoBehaviour
     private SphereCollider _sphereCollider;
     private GameObject _currentTarget;
     private int _upgradeLevel;
+    private TowerManager _towerManager;
 
     private Queue<GameObject> _targetQueue = new Queue<GameObject>();
     
@@ -40,6 +39,7 @@ public class Tower : MonoBehaviour
 
     void Awake()
     {
+        _towerManager = GetComponentInParent<TowerManager>();
         _meshFilter = GetComponent<MeshFilter>();
         _sphereCollider = GetComponent<SphereCollider>();
         _sphereCollider.radius = detectRange*2;
@@ -98,6 +98,11 @@ public class Tower : MonoBehaviour
 
     }
 
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
@@ -122,5 +127,17 @@ public class Tower : MonoBehaviour
     {
         //remove center offset later
         Gizmos.DrawWireSphere(new Vector3(transform.position.x, 0.5f, transform.position.z), detectRange);
+    }
+
+
+    public void OnSelect()
+    {
+        _towerManager.SetSelectedTower(this);
+        UITestingScript.Toggle(UIType.TowerOptionsUI, true);
+    }
+
+    public void OnDeselect()
+    {
+        throw new NotImplementedException();
     }
 }
