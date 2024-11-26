@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Singleton : MonoBehaviour
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public static Singleton Instance { get; private set;}
+    public static T Instance { get; private set;}
     
     void Awake()
     {
