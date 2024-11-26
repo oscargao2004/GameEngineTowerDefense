@@ -1,6 +1,8 @@
 David Chuong - 100860614
 Oscar Gao -  100866004
 
+Link to google drive with UML diagram and video report/presentation: https://drive.google.com/drive/folders/12EJ8b9MInfL6WToxJ-rKrmDgu9yxggJq
+
 This is a write up on our course project that explains the different design patterns we have learned in class and how we have applied them into our project.
 
 Singleton
