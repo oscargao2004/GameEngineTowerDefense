@@ -44,10 +44,15 @@ public class WorldSpaceMouse : Singleton<WorldSpaceMouse>
                 {
                     if (_selected != null)
                     {
-                        _selected.OnDeselect();
+                        //_selected.OnDeselect();
+                        _selected = selectable;
+                        _selected.OnSelect();
                     }
-                    _selected = selectable;
-                    _selected.OnSelect();
+                    else
+                    {
+                        _selected = selectable;
+                        _selected.OnSelect();
+                    }
                 }
             }
         }

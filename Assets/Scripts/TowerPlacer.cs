@@ -26,7 +26,7 @@ public class TowerPlacer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && WorldSpaceMouse.raycastIsColliding)
+        if (Input.GetMouseButtonDown(0) && WorldSpaceMouse.raycastIsColliding && !WorldSpaceMouse.GetMouseRayHit().transform.gameObject.CompareTag("Tower"))
         {
             SpawnTower(WorldSpaceMouse.GetTile().transform.position, Quaternion.identity);
         }
