@@ -236,6 +236,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void StartInteractiveRebind()
         {
+            m_Action.action.Disable();
+
             if (!ResolveActionAndBinding(out var action, out var bindingIndex))
                 return;
 
@@ -260,7 +262,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 m_RebindOperation?.Dispose();
                 m_RebindOperation = null;
-                action.Enable();
+                m_Action.action.Enable();
+                SaveActionBinding();
             }
 
             //Fixes the "InvalidOperationException: Cannot rebind action x while it is enabled" error
@@ -434,6 +437,26 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 var action = m_Action?.action;
                 m_ActionLabel.text = action != null ? action.name : string.Empty;
+            }
+        }
+
+        private void Start()
+        {
+            LoadActionBindings();
+        }
+
+        private void SaveActionBinding()
+        {
+            var currentBindings = actionReference.action.actionMap.SaveBindingOverridesAsJson();
+            PlayerPrefs.SetString(m_Action.action.name + bindingId, currentBindings);
+        }
+
+        private void LoadActionBindings()
+        {
+            var savedBindings = PlayerPrefs.GetString(m_Action.action.name + bindingId);
+            if (!string.IsNullOrEmpty(savedBindings))
+            {
+                actionReference.action.actionMap.LoadBindingOverridesFromJson(savedBindings);
             }
         }
 
