@@ -3,16 +3,16 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Path))]
-public class PathEditor : Editor
+[CustomEditor(typeof(WaypointCreatorWrapper))]
+public class WaypointCreatorEditor : Editor
 {
     [SerializeField] private float handleSize = 0.5f;
     private bool _editing;
-    private Path _path;
+    private WaypointCreatorWrapper _wpCreator;
 
     private void OnEnable()
     {
-        _path = (Path)target;
+        _wpCreator = (WaypointCreatorWrapper)target;
     }
 
     public override void OnInspectorGUI()
@@ -23,7 +23,8 @@ public class PathEditor : Editor
 
         if (GUILayout.Button("Add Path Point"))
         {
-            _path.CreatePathPoint();
+            IntPtr newPoint = _wpCreator.AddPoint(0,0,0);
+            Debug.Log("Added point at "+ _wpCreator.GetPointLocation(newPoint));
         }
         
         EditorGUILayout.EndVertical();
@@ -31,15 +32,11 @@ public class PathEditor : Editor
 
     private void OnSceneGUI()
     {
-        for (int i = 0; i < _path.pointList.Count; i++)
+        for (int i = 0; i < _wpCreator.GetPointCount(); i++)
         {
             Handles.color = Color.magenta;
-            Handles.SphereHandleCap(-1, _path.pointList[i], Quaternion.identity, handleSize, EventType.Repaint);
+            Handles.SphereHandleCap(-1, _wpCreator.GetPointLocation(_wpCreator.GetPointAt(i)), Quaternion.identity, handleSize, EventType.Repaint);
         }
-        
-        
-        
-        
         
     }
 }
