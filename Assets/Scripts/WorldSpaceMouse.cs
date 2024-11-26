@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class WorldSpaceMouse : Singleton<WorldSpaceMouse>
+public class WorldSpaceMouse : Singleton
 {
     [Header("Raycast Settings")]
     [SerializeField] private float maxRayDistance = 20f;
