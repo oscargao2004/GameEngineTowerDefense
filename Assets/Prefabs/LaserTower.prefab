@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7659142411271479092}
   - component: {fileID: 7752324150961757640}
   - component: {fileID: 2771147395714957382}
-  m_Layer: 2
+  - component: {fileID: -8212288217515783155}
+  m_Layer: 0
   m_Name: LaserTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,12 +122,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba1e6b307a24174e9f4e535a7fb4731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRange: 3
-  attackSpeedInSeconds: 1
+  detectRange: 5
+  attackSpeedInSeconds: 0.1
   projectilePrefab: {fileID: 5536445449803639347, guid: 4c0eab69b93914e45ad3c5f13e2bc077, type: 3}
-  projectileDamage: 10
+  projectileDamage: 2
   BaseModel: {fileID: 3909233067320746374, guid: 979139ff5e3834d4fb122972c0ac047c, type: 3}
   Upgrade1Model: {fileID: -2126430696061535826, guid: 6018f24596d09664a91d909d2f091082, type: 3}
   Upgrade2Model: {fileID: 7531113560215370859, guid: d6bf2a6aad03d0049975e6c0822d574a, type: 3}
   baseMaterial: {fileID: 2100000, guid: d29b47dbb0b857a4d92c6eba7314a66a, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 003e8cd88f1a52846b2f7f1703a270bf, type: 2}
+--- !u!65 &-8212288217515783155
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172189491858979956}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

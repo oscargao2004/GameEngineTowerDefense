@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossEnemyFactory : EnemyFactory
 {
-    private EnemyData _enemyData;
+    private static EnemyData _enemyData;
     public override GameObject CreateEnemy()
     {
         GameObject newEnemy = _enemyData.prefab;

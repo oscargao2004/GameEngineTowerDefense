@@ -8,8 +8,15 @@ public class TowerOptionsUI : UIElement, IListener
     private TowerCommand _sellCommand = new SellTowerCommand();
     private TowerCommand _upgradeCommand = new UpgradeTowerCommand();
     
+    TowerFactory turretFactory = new TurretTowerFactory();
+    TowerFactory laserFactory = new LaserTowerFactory();
+    TowerFactory aoeFactory = new AOETowerFactory();
+    
     void Start()
     {
+        turretFactory.LoadData();
+        laserFactory.LoadData();
+        aoeFactory.LoadData();
         towerManager.AddListener(this);
         Disable();
     }
@@ -17,6 +24,25 @@ public class TowerOptionsUI : UIElement, IListener
     void Update()
     {
         
+    }
+    public void SwitchToTurret()
+    {
+        SwitchTowerType(turretFactory);
+    }
+    public void SwitchToLaser()
+    {
+        SwitchTowerType(laserFactory);
+    }
+    public void SwitchToAoe()
+    {
+        SwitchTowerType(aoeFactory);
+    }
+    
+    public void SwitchTowerType(TowerFactory factory)
+    {
+        GameObject newTower = Instantiate(factory.CreateTower(), _selectedTower.transform.position, Quaternion.identity);
+        Destroy(_selectedTower.gameObject);
+        _selectedTower = newTower.GetComponent<Tower>();
     }
 
     public void SellTower()
